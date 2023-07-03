@@ -75,8 +75,11 @@ def token_lens_to_idxs(token_lens):
         for token_len in seq_token_lens:
             seq_idxs.extend([i + offset for i in range(token_len)]
                             + [-1] * (max_token_len - token_len))
-            seq_masks.extend([1.0 / token_len] * token_len
-                             + [0.0] * (max_token_len - token_len))
+            if token_len == 0:
+                seq_masks.extend([0.0] * max_token_len)
+            else:
+                seq_masks.extend([1.0 / token_len] * token_len
+                                + [0.0] * (max_token_len - token_len))
             offset += token_len
         seq_idxs.extend([-1] * max_token_len * (max_token_num - len(seq_token_lens)))
         seq_masks.extend([0.0] * max_token_len * (max_token_num - len(seq_token_lens)))
