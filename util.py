@@ -321,12 +321,12 @@ def best_score_by_task(log_file, task, max_epoch=1000):
                 best_dev_score = dev[task]['f']
                 best_scores = [dev, test, epoch]
 
-        print('Epoch: {}'.format(best_scores[-1]))
+        print('Epoch: {}'.format(best_scores))
         tasks = ['entity', 'mention', 'relation', 'trigger_id', 'trigger',
                  'role_id', 'role']
-        for t in tasks:
-            print('{}: dev: {:.2f}, test: {:.2f}'.format(t,
-                                                         best_scores[0][t][
-                                                             'f'] * 100.0,
-                                                         best_scores[1][t][
-                                                             'f'] * 100.0))
+        # for t in tasks:
+        #     print('{}: dev: {:.2f}, test: {:.2f}'.format(t,
+        #                                                  best_scores[0][t][
+        #                                                      'f'] * 100.0,
+        #                                                  best_scores[1][t][
+        #                                                      'f'] * 100.0))
