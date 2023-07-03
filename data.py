@@ -371,10 +371,14 @@ class IEDataset(Dataset):
             token_lens = inst['token_lens']
 
             # Pad word pieces with special tokens
+            if pieces == []:
+                continue
+
             piece_idxs = tokenizer.encode(pieces,
                                           add_special_tokens=True,
                                           max_length=self.max_length,
                                           truncation=True)
+
             pad_num = self.max_length - len(piece_idxs)
             attn_mask = [1] * len(piece_idxs) + [0] * pad_num
             piece_idxs = piece_idxs + [0] * pad_num

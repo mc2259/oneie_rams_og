@@ -96,6 +96,8 @@ def load_valid_patterns(path, vocabs):
     relation_entity = json.load(
         open(os.path.join(path, 'relation_entity.json'), 'r', encoding='utf-8'))
     for relation, entities in relation_entity.items():
+        if relation not in relation_type_vocab:
+            continue
         relation_type_idx = relation_type_vocab[relation]
         for entity in entities:
             entity_type_idx = entity_type_vocab[entity]
